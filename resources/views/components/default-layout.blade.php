@@ -4,6 +4,12 @@
 
 <body>
     <x-template-svg-icons-defs />
+    <!-- Page Preloader -->
+    <div class="preloader-wrapper">
+        <div class="preloader">
+        </div>
+    </div>
+
     <x-offcanvas-navbar />
     <x-navigation />
     <!-- Page Heading -->
