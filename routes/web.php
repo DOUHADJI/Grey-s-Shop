@@ -12,6 +12,10 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
+Route::get("/categories-de-produits/{slug}", function($slug){
+    dd($slug);
+})->name("category.show");
+
 /* Route::prefix('admin')->middleware(['auth', 'admin.role'])->name('admin.')->group(function () {
 
     // Routes pour les utilisateurs (Users)

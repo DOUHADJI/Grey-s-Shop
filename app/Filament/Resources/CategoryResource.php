@@ -2,17 +2,20 @@
 
 namespace App\Filament\Resources;
 
+use Closure;
 use App\Models\Category;
-use App\Filament\Resources\CategoryResource\Pages;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
+use App\Filament\Resources\CategoryResource\Pages;
 
 class CategoryResource extends Resource
 {
@@ -26,20 +29,39 @@ class CategoryResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                TextInput::make('name')
-                    ->label('Nom')
-                    ->required()
-                    ->maxLength(255),
-                TextInput::make('slug')
-                    ->label('Slug')
-                    ->required()
-                    ->maxLength(255),
-                Textarea::make('description')
-                    ->label('Description')
-                    ->nullable()
-                    ->maxLength(500),
+        ->schema([
+            TextInput::make('name')
+                ->label('Nom')
+                ->required()
+                ->maxLength(255)
+                ->afterStateUpdated(function (Closure $set, $state) {
+                    $slug = Str::slug($state);
+                    $set('slug', $slug);
+                }),
+
+            TextInput::make('slug')
+                ->label('Slug')
+                ->required()
+                ->maxLength(255)
+                ->disabled(),
+
+            Textarea::make('description')
+                ->label('Description')
+                ->nullable()
+                ->maxLength(500),
+
+            FileUpload::make('image')
+                ->label('Image')
+                ->image()
+                ->required()
+                ->maxSize(1024)
+                ->disk('public')
+                ->directory('categories')
+               // ->imageResizeTargetWidth(161)
+               // ->imageResizeTargetHeight(160)
+               // ->imageCropAspectRatio('161:160'),
             ]);
+
     }
 
     public static function table(Table $table): Table
