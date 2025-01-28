@@ -1,6 +1,6 @@
 <div class="product-item swiper-slide">
     <figure>
-        <a href="index.html" title="Product Title">
+        <a href="{{ route("home") }}" title="Product Title">
             <img src="images/product-thumb-2.webp" alt="Product Thumbnail" class="tab-image">
         </a>
     </figure>

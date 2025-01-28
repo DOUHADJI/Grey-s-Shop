@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\FrontNavigationController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
+// FRont Pages routes
+Route::get("/", [FrontNavigationController::class, "home"])->name("home");
+Route::get("/categories-de-produits", [FrontNavigationController::class, "showCategory"])->name("category.index");
+Route::get("/categories-de-produits/{slug}", [FrontNavigationController::class, "showCategory"])->name("category.show");
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
@@ -12,9 +16,7 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-Route::get("/categories-de-produits/{slug}", function($slug){
-    dd($slug);
-})->name("category.show");
+
 
 /* Route::prefix('admin')->middleware(['auth', 'admin.role'])->name('admin.')->group(function () {
 

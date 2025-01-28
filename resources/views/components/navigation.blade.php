@@ -7,8 +7,8 @@
                 class="col-sm-4 col-lg-2 text-center text-sm-start d-flex gap-3 justify-content-center justify-content-md-start">
                 <!-- App Logo -->
                 <div class="d-flex align-items-center my-3 my-sm-0">
-                    <a href="index.html">
-                        <img src="images/logo.svg" alt="logo" class="img-fluid">
+                    <a href="{{ route("home") }}">
+                        <img src="{{asset('images/logo.svg')}}" alt="logo" class="img-fluid">
                     </a>
                 </div>
                 <!-- End App Logo -->
@@ -30,19 +30,19 @@
                     <!-- Search Categories Select -->
                     <div class="col-md-4 d-none d-md-block">
                         <select class="form-select border-0 bg-transparent">
-                            <option>All Categories</option>
-                            <option>Groceries</option>
-                            <option>Drinks</option>
-                            <option>Chocolates</option>
+                            <option value="all">Toutes les catégories</option>
+                            @foreach ($categories as $category )
+                                <option value="{{ $category->slug}}"> {{ $category->name }} </option>
+                            @endforeach
                         </select>
                     </div>
                     <!-- End Search Categories Select -->
 
                     <!-- Search Input -->
                     <div class="col-11 col-md-7">
-                        <form id="search-form" class="text-center" action="index.html" method="post">
+                        <form id="search-form" class="text-center" action="{{ route("home") }}" method="post">
                             <input type="text" class="form-control border-0 bg-transparent"
-                                placeholder="Search for more than 20,000 products">
+                                placeholder="Retrouver des produits">
                         </form>
                     </div>
                     <!-- End Search Input -->
@@ -67,7 +67,7 @@
                     class="navbar-nav list-unstyled d-flex flex-row gap-3 gap-lg-5 justify-content-center flex-wrap align-items-center mb-0 fw-bold text-uppercase text-dark">
                     <!-- Home Link -->
                     <li class="nav-item active">
-                        <a href="index.html" class="nav-link">Home</a>
+                        <a href="{{ route("home") }}" class="nav-link">Home</a>
                     </li>
                     <!-- End Home Link -->
 
@@ -76,18 +76,18 @@
                         <a class="nav-link dropdown-toggle pe-3" role="button" id="pages" data-bs-toggle="dropdown"
                             aria-expanded="false">Pages</a>
                         <ul class="dropdown-menu border-0 p-3 rounded-0 shadow" aria-labelledby="pages">
-                            <li><a href="index.html" class="dropdown-item">About Us </a></li>
-                            <li><a href="index.html" class="dropdown-item">Shop </a></li>
-                            <li><a href="index.html" class="dropdown-item">Single Product </a></li>
-                            <li><a href="index.html" class="dropdown-item">Cart </a></li>
-                            <li><a href="index.html" class="dropdown-item">Checkout </a></li>
-                            <li><a href="index.html" class="dropdown-item">Blog </a></li>
-                            <li><a href="index.html" class="dropdown-item">Single Post </a></li>
-                            <li><a href="index.html" class="dropdown-item">Styles </a></li>
-                            <li><a href="index.html" class="dropdown-item">Contact </a></li>
-                            <li><a href="index.html" class="dropdown-item">Thank You </a></li>
-                            <li><a href="index.html" class="dropdown-item">My Account </a></li>
-                            <li><a href="index.html" class="dropdown-item">404 Error </a></li>
+                            <li><a href="{{ route("home") }}" class="dropdown-item">About Us </a></li>
+                            <li><a href="{{ route("home") }}" class="dropdown-item">Shop </a></li>
+                            <li><a href="{{ route("home") }}" class="dropdown-item">Single Product </a></li>
+                            <li><a href="{{ route("home") }}" class="dropdown-item">Cart </a></li>
+                            <li><a href="{{ route("home") }}" class="dropdown-item">Checkout </a></li>
+                            <li><a href="{{ route("home") }}" class="dropdown-item">Blog </a></li>
+                            <li><a href="{{ route("home") }}" class="dropdown-item">Single Post </a></li>
+                            <li><a href="{{ route("home") }}" class="dropdown-item">Styles </a></li>
+                            <li><a href="{{ route("home") }}" class="dropdown-item">Contact </a></li>
+                            <li><a href="{{ route("home") }}" class="dropdown-item">Thank You </a></li>
+                            <li><a href="{{ route("home") }}" class="dropdown-item">My Account </a></li>
+                            <li><a href="{{ route("home") }}" class="dropdown-item">404 Error </a></li>
                         </ul>
                     </li>
                     <!-- End Dropdown Menu -->

@@ -3,7 +3,7 @@
     <div class="product-item">
         <figure>
             <!-- Lien vers la page produit -->
-            <a href="index.html" title="Product Title">
+            <a href="{{ route("home") }}" title="Product Title">
                 <!-- Image du produit -->
                 <img src="images/product-thumb-1.jpg" alt="Product Thumbnail" class="tab-image home-product-sell-item-img">
             </a>
