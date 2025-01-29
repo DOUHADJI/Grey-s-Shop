@@ -18,40 +18,65 @@
 }
 
 .home-banner {
-    color : white !important;
-}
-
-.text-white{
     color: white !important;
 }
 
-.text-black{
+.text-white {
+    color: white !important;
+}
+
+.text-black {
     color: black !important;
 }
 
-.bottom-banner-title{
+.bottom-banner-title {
     font-size: 2.2rem !important;
 }
 
-.bottom-banner-app-title{
+.bottom-banner-app-title {
     font-size: 5rem !important;
     font-weight: 800;
-
 }
 
-.bottom-banner-subtitle{
+.bottom-banner-subtitle {
     font-size: 1rem !important;
     font-weight: 700;
-
 }
 
-.bottom-banner-description{
+.bottom-banner-description {
     font-size: 15px !important;
     font-weight: 700;
 }
 
-.breadcrumb{
+.breadcrumb {
     background: #f2faf2;
     padding: 10px 30px;
+}
 
+.product-details-service-title {
+    font-size: 16px !important;
+    font-weight: bold;
+}
+
+.product-details-service-description {
+    font-size: 12px !important;
+}
+
+.related-articles-title{
+    background: #f2faf2;
+    padding: 10px 30px;
+}
+
+.article-image-container{
+    width:100%;
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+    height: 100%;
+    background: #f8fcf8;
+}
+
+.article-image{
+    width: 30rem !important;
+    height: 30rem !important;
 }

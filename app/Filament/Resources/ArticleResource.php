@@ -51,11 +51,11 @@ class ArticleResource extends Resource
                 ])
                 ->columns(4),
 
-            Section::make('Contenu')
+            Section::make('Description')
                 ->schema([
 
-                    Textarea::make('content')
-                        ->label('Contenu')
+                    Textarea::make('description')
+                        ->label('Description')
                         ->required()
                         ->rows(5)
                         ->columnSpan(4),

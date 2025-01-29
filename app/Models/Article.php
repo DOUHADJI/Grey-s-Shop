@@ -9,14 +9,15 @@ class Article extends Model
 
     protected $fillable = [
         'title',
-        'content',
+        'description',
         'image',
+        'slug',
         'price',
         'view_count',
         'category_id',
     ];
 
-    
+
     public function category()
     {
         return $this->belongsTo(Category::class);

@@ -32,4 +32,16 @@ class FrontNavigationController extends Controller
             "articles" => $articles
         ]);
     }
+
+    public function showArticle(string $categorySlug, string $slug)
+    {
+
+        $article = Article::where("slug", $slug)->with(["category", "comments"])->first();
+        $relatedArticles = Article::where("id", "!=", $article->id)->with(["category", "comments"])->orderBy("updated_at", "DESC")->take(8)->get();
+
+        return view("pages.article.show", [
+            "article" => $article,
+            "relatedArticles" => $relatedArticles
+        ]);
+    }
 }

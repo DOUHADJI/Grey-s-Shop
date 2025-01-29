@@ -4,7 +4,11 @@
     <div class="product-item">
         <figure>
             <!-- Lien vers la page produit -->
-            <a href="#" title="{{$article->title}}">
+            <a href="{{ route('article.show', [
+                'categorySlug' => $article->category->slug,
+                'slug' => $article->slug,
+            ]) }}"
+                title="{{ $article->title }}">
                 <!-- Image du produit -->
                 <img src="{{ isset($article->image) ? Storage::url($article->image) : asset('images/product-thumb-1.jpg') }}"
                     alt="Product Thumbnail" class="tab-image home-product-sell-item-img">
@@ -14,7 +18,7 @@
         <!-- Section du produit avec son titre, évaluations et prix -->
         <div class="d-flex flex-column text-center">
             <!-- Titre du produit -->
-            <h3 class="fs-6 fw-normal">{{$article->title}}</h3>
+            <h3 class="fs-6 fw-normal">{{ $article->title }}</h3>
 
             <!-- Section des évaluations -->
             <div>
@@ -44,7 +48,7 @@
                 <!-- Ancien prix barré -->
                 <del>{{ $article->price - 1000 }}XOF</del>
                 <!-- Nouveau prix -->
-                <span class="text-dark fw-semibold">{{ $article->price - 0}}XOF </span>
+                <span class="text-dark fw-semibold">{{ $article->price - 0 }}XOF </span>
                 <!-- Badge de promotion -->
                 <span class="badge border border-dark-subtle rounded-0 fw-normal px-1 fs-7 lh-1 text-body-tertiary">10%
                     OFF</span>

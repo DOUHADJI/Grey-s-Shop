@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             ArticleSeeder::class,
             TagSeeder::class,
             PostSeeder::class,
-            ConfigSeeder::class
+            ConfigSeeder::class,
+            SeederSlugInArticle::class
         ]);
     }
 }

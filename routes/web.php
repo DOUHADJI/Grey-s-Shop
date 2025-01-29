@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::get("/", [FrontNavigationController::class, "home"])->name("home");
 Route::get("/categories-de-produits", [FrontNavigationController::class, "showCategory"])->name("category.index");
 Route::get("/categories-de-produits/{slug}", [FrontNavigationController::class, "showCategory"])->name("category.show");
+Route::get("/categories-de-produits/{categorySlug}/{slug}", [FrontNavigationController::class, "showArticle"])->name("article.show");
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
