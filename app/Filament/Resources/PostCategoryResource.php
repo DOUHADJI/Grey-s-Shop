@@ -3,28 +3,26 @@
 namespace App\Filament\Resources;
 
 use Filament\Forms\Set;
-use App\Models\Category;
+use App\Models\PostCategory;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\Textarea;
-use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
-use App\Filament\Resources\CategoryResource\Pages;
+use App\Filament\Resources\PostCategoryResource\Pages;
 
-class CategoryResource extends Resource
+class PostCategoryResource extends Resource
 {
-    protected static ?string $model = Category::class;
+    protected static ?string $model = PostCategory::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationLabel = 'Catégories';
-    protected static ?string $pluralLabel = 'Catégories';
-    protected static ?string $label = 'Catégorie';
+    protected static ?string $navigationLabel = 'Post Catégories';
+    protected static ?string $pluralLabel = 'Post Catégories';
+    protected static ?string $label = 'Post Catégorie';
 
     public static function form(Form $form): Form
     {
@@ -39,25 +37,8 @@ class CategoryResource extends Resource
 
                 TextInput::make('slug')
                     ->label('Slug')
-                    ->required()
-                    ->maxLength(255)
-                    ->disabled(),
-
-                Textarea::make('description')
-                    ->label('Description')
                     ->nullable()
-                    ->maxLength(500),
-
-                FileUpload::make('image')
-                    ->label('Image')
-                    ->image()
-                    ->required()
-                    ->maxSize(1024)
-                    ->disk('public')
-                    ->directory('categories')
-                // ->imageResizeTargetWidth(161)
-                // ->imageResizeTargetHeight(160)
-                // ->imageCropAspectRatio('161:160'),
+                    ->maxLength(255),
             ]);
     }
 
@@ -75,20 +56,15 @@ class CategoryResource extends Resource
                     ->sortable()
                     ->searchable(),
 
-                    TextColumn::make('products_count')
-                    ->label('Nombre d\'articles')
-                    ->getStateUsing(function ($record) {
-                        return $record->articles()->count();
-                    })
-                    ->sortable(),
+                TextColumn::make('slug')
+                    ->label('Slug')
+                    ->sortable()
+                    ->searchable(),
 
                 TextColumn::make('posts_count')
                     ->label('Nombre de posts')
-                    ->getStateUsing(function ($record) {
-                        return $record->posts()->count();
-                    })
+                    ->counts('posts')
                     ->sortable(),
-
 
                 TextColumn::make('updated_at')
                     ->label('Dernière modification')
@@ -116,9 +92,7 @@ class CategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategories::route('/'),
-            //  'create' => Pages\CreateCategory::route('/create'),
-            //  'edit' => Pages\EditCategory::route('/{record}/edit'),
+            'index' => Pages\ListPostCategories::route('/'),
         ];
     }
 
@@ -129,11 +103,21 @@ class CategoryResource extends Resource
 
     public static function getNavigationSort(): int
     {
-        return 2;
+        return 4;
     }
 
     public static function getNavigationBadge(): ?string
     {
-        return Category::count();
+        return PostCategory::count();
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Gestion du Blog';
+    }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
     }
 }

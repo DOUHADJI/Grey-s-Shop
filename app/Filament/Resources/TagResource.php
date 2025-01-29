@@ -3,7 +3,7 @@
 namespace App\Filament\Resources;
 
 use Filament\Forms\Set;
-use App\Models\Category;
+use App\Models\Tag;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
@@ -12,19 +12,18 @@ use Filament\Forms\Components\Textarea;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
-use App\Filament\Resources\CategoryResource\Pages;
+use App\Filament\Resources\TagResource\Pages;
 
-class CategoryResource extends Resource
+class TagResource extends Resource
 {
-    protected static ?string $model = Category::class;
+    protected static ?string $model = Tag::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationLabel = 'Catégories';
-    protected static ?string $pluralLabel = 'Catégories';
-    protected static ?string $label = 'Catégorie';
+    protected static ?string $navigationIcon = 'heroicon-o-tag';
+    protected static ?string $navigationLabel = 'Tags';
+    protected static ?string $pluralLabel = 'Tags';
+    protected static ?string $label = 'Tag';
 
     public static function form(Form $form): Form
     {
@@ -35,7 +34,7 @@ class CategoryResource extends Resource
                     ->required()
                     ->maxLength(255)
                     ->live(onBlur: true)
-    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                    ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
 
                 TextInput::make('slug')
                     ->label('Slug')
@@ -43,21 +42,11 @@ class CategoryResource extends Resource
                     ->maxLength(255)
                     ->disabled(),
 
-                Textarea::make('description')
-                    ->label('Description')
+                TextInput::make('color')
+                    ->label('Couleur')
                     ->nullable()
-                    ->maxLength(500),
-
-                FileUpload::make('image')
-                    ->label('Image')
-                    ->image()
-                    ->required()
-                    ->maxSize(1024)
-                    ->disk('public')
-                    ->directory('categories')
-                // ->imageResizeTargetWidth(161)
-                // ->imageResizeTargetHeight(160)
-                // ->imageCropAspectRatio('161:160'),
+                    ->maxLength(7)
+                    ->placeholder('#FFFFFF'),
             ]);
     }
 
@@ -69,27 +58,18 @@ class CategoryResource extends Resource
                     ->label('ID')
                     ->sortable()
                     ->searchable(),
-
                 TextColumn::make('name')
                     ->label('Nom')
                     ->sortable()
                     ->searchable(),
-
-                    TextColumn::make('products_count')
-                    ->label('Nombre d\'articles')
-                    ->getStateUsing(function ($record) {
-                        return $record->articles()->count();
-                    })
-                    ->sortable(),
-
-                TextColumn::make('posts_count')
-                    ->label('Nombre de posts')
-                    ->getStateUsing(function ($record) {
-                        return $record->posts()->count();
-                    })
-                    ->sortable(),
-
-
+                TextColumn::make('slug')
+                    ->label('Slug')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('color')
+                    ->label('Couleur')
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('updated_at')
                     ->label('Dernière modification')
                     ->dateTime()
@@ -116,24 +96,27 @@ class CategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategories::route('/'),
-            //  'create' => Pages\CreateCategory::route('/create'),
-            //  'edit' => Pages\EditCategory::route('/{record}/edit'),
+            'index' => Pages\ListTags::route('/'),
         ];
     }
 
     public static function getNavigationLabel(): string
     {
-        return 'Gestion des catégories';
+        return 'Gestion des tags';
     }
 
     public static function getNavigationSort(): int
     {
-        return 2;
+        return 3;
     }
 
     public static function getNavigationBadge(): ?string
     {
-        return Category::count();
+        return Tag::count();
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Gestion du Blog';
     }
 }

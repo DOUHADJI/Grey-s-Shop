@@ -8,15 +8,16 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\BadgeColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Columns\BadgeColumn;
 use App\Filament\Resources\ArticleResource\Pages;
 
 class ArticleResource extends Resource
@@ -29,32 +30,58 @@ class ArticleResource extends Resource
     protected static ?string $label = 'Article';
 
     public static function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                TextInput::make('title')
-                    ->label('Titre')
-                    ->required()
-                    ->maxLength(255),
-                Textarea::make('content')
-                    ->label('Contenu')
-                    ->required()
-                    ->rows(5),
-                FileUpload::make('image')
-                    ->label('Image')
-                    ->directory('articles')
-                    ->required(),
-                TextInput::make('price')
-                    ->label('Prix')
-                    ->numeric()
-                    ->step(0.01)
-                    ->required(),
-                Select::make('category_id')
-                    ->label('Catégorie')
-                    ->required()
-                    ->relationship('category', 'name'),
-            ]);
-    }
+{
+    return $form
+        ->schema([
+
+            Section::make('Informations principales')
+                ->schema([
+
+                    TextInput::make('title')
+                        ->label('Titre')
+                        ->required()
+                        ->maxLength(255)
+                        ->columnSpan(4),
+
+                    Select::make('category_id')
+                        ->label('Catégorie')
+                        ->required()
+                        ->relationship('category', 'name')
+                        ->columnSpan(4),
+                ])
+                ->columns(4),
+
+            Section::make('Contenu')
+                ->schema([
+
+                    Textarea::make('content')
+                        ->label('Contenu')
+                        ->required()
+                        ->rows(5)
+                        ->columnSpan(4),
+
+                    FileUpload::make('image')
+                        ->label('Image')
+                        ->directory('articles')
+                        ->required()
+                        ->columnSpan(4),
+                ])
+                ->columns(4),
+
+            Section::make('Prix')
+                ->schema([
+
+                    TextInput::make('price')
+                        ->label('Prix')
+                        ->numeric()
+                        ->step(0.01)
+                        ->required()
+                        ->columnSpan(4),
+                ])
+                ->columns(4),
+        ]);
+}
+
 
     public static function table(Table $table): Table
     {
