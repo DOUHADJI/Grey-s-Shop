@@ -62,13 +62,13 @@
     font-size: 12px !important;
 }
 
-.related-articles-title{
+.related-articles-title {
     background: #f2faf2;
     padding: 10px 30px;
 }
 
-.article-image-container{
-    width:100%;
+.article-image-container {
+    width: 100%;
     display: flex;
     justify-content: center !important;
     align-items: center;
@@ -76,7 +76,24 @@
     background: #f8fcf8;
 }
 
-.article-image{
+.article-image {
     width: 30rem !important;
     height: 30rem !important;
+    object-fit: cover;
+}
+
+.about-image-container {
+    width: 100%;
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+    height: 100%;
+    background: #f8fcf8;
+}
+
+.about-image {
+    width: 30rem !important;
+    height: 30rem !important;
+    height: auto;
+    object-fit: cover;
 }
