@@ -1,3 +1,27 @@
+@php
+    $pages = [
+        [
+            'label' => 'A propos',
+            'route' => route('about'),
+        ],
+
+        [
+            'label' => 'Notre Boutique',
+            'route' => route('shop'),
+        ],
+
+        [
+            'label' => 'Blog',
+            'route' => route('blog.index'),
+        ],
+
+        [
+            'label' => 'Nous contacter',
+            'route' => route('contact'),
+        ],
+    ];
+@endphp
+
 <header>
     <div class="container-fluid">
         <div class="row py-3 border-bottom">
@@ -7,8 +31,8 @@
                 class="col-sm-4 col-lg-2 text-center text-sm-start d-flex gap-3 justify-content-center justify-content-md-start">
                 <!-- App Logo -->
                 <div class="d-flex align-items-center my-3 my-sm-0">
-                    <a href="{{ route("home") }}">
-                        <img src="{{asset('images/logo.svg')}}" alt="logo" class="img-fluid">
+                    <a href="{{ route('home') }}">
+                        <img src="{{ asset('images/logo.svg') }}" alt="logo" class="img-fluid">
                     </a>
                 </div>
                 <!-- End App Logo -->
@@ -31,8 +55,8 @@
                     <div class="col-md-4 d-none d-md-block">
                         <select class="form-select border-0 bg-transparent">
                             <option value="all">Toutes les catégories</option>
-                            @foreach ($categories as $category )
-                                <option value="{{ $category->slug}}"> {{ $category->name }} </option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->slug }}"> {{ $category->name }} </option>
                             @endforeach
                         </select>
                     </div>
@@ -40,7 +64,7 @@
 
                     <!-- Search Input -->
                     <div class="col-11 col-md-7">
-                        <form id="search-form" class="text-center" action="{{ route("home") }}" method="post">
+                        <form id="search-form" class="text-center" action="{{ route('home') }}" method="post">
                             <input type="text" class="form-control border-0 bg-transparent"
                                 placeholder="Retrouver des produits">
                         </form>
@@ -67,7 +91,7 @@
                     class="navbar-nav list-unstyled d-flex flex-row gap-3 gap-lg-5 justify-content-center flex-wrap align-items-center mb-0 fw-bold text-uppercase text-dark">
                     <!-- Home Link -->
                     <li class="nav-item active">
-                        <a href="{{ route("home") }}" class="nav-link">Home</a>
+                        <a href="{{ route('home') }}" class="nav-link">Accueil</a>
                     </li>
                     <!-- End Home Link -->
 
@@ -76,18 +100,9 @@
                         <a class="nav-link dropdown-toggle pe-3" role="button" id="pages" data-bs-toggle="dropdown"
                             aria-expanded="false">Pages</a>
                         <ul class="dropdown-menu border-0 p-3 rounded-0 shadow" aria-labelledby="pages">
-                            <li><a href="{{ route("home") }}" class="dropdown-item">About Us </a></li>
-                            <li><a href="{{ route("home") }}" class="dropdown-item">Shop </a></li>
-                            <li><a href="{{ route("home") }}" class="dropdown-item">Single Product </a></li>
-                            <li><a href="{{ route("home") }}" class="dropdown-item">Cart </a></li>
-                            <li><a href="{{ route("home") }}" class="dropdown-item">Checkout </a></li>
-                            <li><a href="{{ route("home") }}" class="dropdown-item">Blog </a></li>
-                            <li><a href="{{ route("home") }}" class="dropdown-item">Single Post </a></li>
-                            <li><a href="{{ route("home") }}" class="dropdown-item">Styles </a></li>
-                            <li><a href="{{ route("home") }}" class="dropdown-item">Contact </a></li>
-                            <li><a href="{{ route("home") }}" class="dropdown-item">Thank You </a></li>
-                            <li><a href="{{ route("home") }}" class="dropdown-item">My Account </a></li>
-                            <li><a href="{{ route("home") }}" class="dropdown-item">404 Error </a></li>
+                            @foreach ($pages as $page)
+                                <li><a href="{{ $page['route'] }}" class="dropdown-item">{{ $page['label'] }} </a></li>
+                            @endforeach
                         </ul>
                     </li>
                     <!-- End Dropdown Menu -->

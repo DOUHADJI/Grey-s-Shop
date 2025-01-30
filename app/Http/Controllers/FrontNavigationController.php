@@ -13,6 +13,21 @@ class FrontNavigationController extends Controller
         return view("pages.welcome");
     }
 
+    public function about()
+    {
+        return view("pages.about");
+    }
+
+    public function contact()
+    {
+        return view("pages.contact");
+    }
+
+    public function shop()
+    {
+        return view("pages.article.index");
+    }
+
     public function showCategories()
     {
         $categories = Category::with("articles")->get();

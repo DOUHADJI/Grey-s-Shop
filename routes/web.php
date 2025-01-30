@@ -1,10 +1,18 @@
 <?php
 
 use App\Http\Controllers\FrontNavigationController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 // FRont Pages routes
 Route::get("/", [FrontNavigationController::class, "home"])->name("home");
+Route::get("/a-propos-de-nous", [FrontNavigationController::class, "about"])->name("about");
+Route::get("/nous-contacter", [FrontNavigationController::class, "contact"])->name("contact");
+Route::get("/notre-boutique", [FrontNavigationController::class, "shop"])->name("shop");
+
+Route::get("/blog", [PostController::class, "index"])->name("blog.index");
+
+
 Route::get("/categories-de-produits", [FrontNavigationController::class, "showCategory"])->name("category.index");
 Route::get("/categories-de-produits/{slug}", [FrontNavigationController::class, "showCategory"])->name("category.show");
 Route::get("/categories-de-produits/{categorySlug}/{slug}", [FrontNavigationController::class, "showArticle"])->name("article.show");
