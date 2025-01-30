@@ -335,7 +335,21 @@
         </symbol>
         <!-- Categories -->
         <symbol xmlns="http://www.w3.org/2000/svg" id="categories" viewBox="0 0 14 14">
-            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M2 2h3v3H2zM9 2h3v3H9zM2 9h3v3H2zM9 9h3v3H9z" />
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                d="M2 2h3v3H2zM9 2h3v3H9zM2 9h3v3H2zM9 9h3v3H9z" />
         </symbol>
+
+        <!-- Icône Téléphone -->
+        <symbol id="phone" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M20 15.5a1.5 1.5 0 0 0-1.06-.44l-2.36.21a1.5 1.5 0 0 0-1.17.69l-1.54 2.31a13.35 13.35 0 0 1-6.85-6.85l2.31-1.54a1.5 1.5 0 0 0 .69-1.17l.21-2.36a1.5 1.5 0 0 0-.44-1.06L7.5 2.1a1.5 1.5 0 0 0-1.06-.44h-3a1.5 1.5 0 0 0-1.5 1.5C2 13.91 10.09 22 20.5 22a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-.44-1.06Z" />
+        </symbol>
+
+        <!-- Icône Email -->
+        <symbol id="email" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M22 6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2Zm-2 0l-8 5-8-5Zm0 12H4V8l8 5 8-5Z" />
+        </symbol>
+
     </defs>
 </svg>

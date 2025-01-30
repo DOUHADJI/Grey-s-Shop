@@ -108,3 +108,32 @@ body{
     object-fit: cover;
     aspect-ratio: 1 / 1;
 }
+
+
+.contact-form-control {
+    border : solid 1px #e1e1e1;
+    background-color: transparent;
+    border-radius: 0px !important;
+}
+
+.contact-us-form{
+    background-color: #f1faf1;
+    padding: 25px;
+}
+
+.contact-us-form-title{
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.contact-form-group{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.contact-btn-block{
+    width: 100% !important;
+    border-radius: 0px !important;
+    margin-top: 15px;
+}

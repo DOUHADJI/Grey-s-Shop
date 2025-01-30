@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Config;
 use Filament\Forms\Components\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,5 +23,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         view()->share('categories', Category::all());
+        view()->share("configs", Config::first());
     }
 }
