@@ -8,7 +8,7 @@
         </div>
         <div class="row">
             @foreach ($recentPosts as $post)
-                <div class="col-md-4">
+     c           <div class="col-md-4">
                     <x-post-item-card :post="$post" />
                 </div>
             @endforeach

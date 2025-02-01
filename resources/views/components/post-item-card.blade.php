@@ -1,4 +1,5 @@
 @props(["post"])
+
 <div class="p-3 h-100">
     <article class="post-item card border-0 shadow-sm post-container">
         <div class="image-holder zoom-effect .home-post-item-img-container">

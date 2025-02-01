@@ -3,6 +3,7 @@
 <x-header :title="$title" />
 
 <body>
+    <x-toast-container />
     <x-template-svg-icons-defs />
     <!-- Page Preloader -->
     <div class="preloader-wrapper">

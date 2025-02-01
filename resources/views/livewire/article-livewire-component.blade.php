@@ -1,10 +1,5 @@
-@props(['article'])
-
-<livewire:article-livewire-component :article="$article" :key="'product-item'.$article->slug" />
-
-
 <!-- Colonne pour afficher un produit -->
-{{-- <div class="col-md-3 p-3 @if (Route::currentRouteName() !== 'article.show') swiper-slide @endif ">
+<div class="col-md-3 p-3 @if (Route::currentRouteName() !== 'article.show') swiper-slide @endif ">
     <div class="product-item relative">
         @if ($article->is_featured)
             <div class="article-featured-container">
@@ -12,15 +7,26 @@
             </div>
         @endif
 
-        <figure>
-            <!-- Lien vers la page produit -->
-            <a href="{{ route('article.show', ['categorySlug' => $article->category->slug, 'slug' => $article->slug]) }}"
-                title="Product Title">
+
+
+
+        <!-- Lien vers la page produit -->
+        <a href="{{ route('article.show', ['categorySlug' => $article->category->slug, 'slug' => $article->slug]) }}"
+            title="Product Title" class=" ">
+            <figure class="position-relative min-h-100 min-w-100">
                 <!-- Image du produit -->
                 <img src="{{ Storage::url($article->image) }}" alt="Product Thumbnail"
                     class="tab-image home-product-sell-item-img">
-            </a>
-        </figure>
+                <!-- Like -->
+                @if ($isLikedByUser)
+                    <div class="article-is-liked-container">
+                       <i class="fa fa-heart fs-4"></i>
+                    </div>
+                @endif
+            </figure>
+
+        </a>
+
 
         <!-- Section du produit avec son titre, évaluations et prix -->
         <div class="d-flex flex-column text-center">
@@ -52,7 +58,7 @@
                         <use xlink:href="#star-half"></use>
                     </svg>
                 </span>
-                <span>(222)</span>
+                <span>({{ $likes }})</span>
             </div>
 
             <!-- Section des prix -->
@@ -86,14 +92,22 @@
                     </div>
                     <!-- Bouton pour ajouter aux favoris -->
                     <div class="col-2">
-                        <a href="#" class="btn btn-outline-dark rounded-1 p-2 fs-6">
+                        <button wire:click="likeAnArticle" class="btn btn-outline-dark rounded-1 p-2 fs-6">
                             <svg width="18" height="18">
                                 <use xlink:href="#heart"></use>
                             </svg>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div> --}}
+</div>
+
+@if ($haveLike)
+    <script>
+        var article = {{ Js::from($article) }};
+        console.log("yryyr")
+        showToast("Artcile " + article.title + ' liké')
+    </script>
+@endif

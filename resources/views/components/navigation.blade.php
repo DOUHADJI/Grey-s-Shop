@@ -22,9 +22,6 @@
     ];
 @endphp
 
-@php
-  //  dd(request()->input('category'));
-@endphp
 
 <header>
     <div class="container-fluid">

@@ -70,10 +70,12 @@ class FrontNavigationController extends Controller
     {
         $category = Category::where("slug", $slug)->first();
         $articles = Article::where("category_id", $category->id)->paginate(2);
+        $otherCategories = Category::where("id", "!=", $category->id)->get();
 
         return view("pages.category.show", [
             "category" => $category,
-            "articles" => $articles
+            "articles" => $articles,
+            "otherCategories" => $otherCategories
         ]);
     }
 
