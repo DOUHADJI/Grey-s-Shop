@@ -1,4 +1,4 @@
-body{
+body {
     overflow-x: hidden !important;
 }
 
@@ -14,8 +14,14 @@ body{
     object-position: center;
 }
 
+.home-post-item-img-container{
+    overflow-y: hidden !important;
+}
+
+
 .home-post-item-img {
-    width: 399px !important;
+    width: 100% !important;
+    max-width: 100% !important;
     height: 241px !important;
     object-fit: cover;
     object-position: center;
@@ -109,31 +115,128 @@ body{
     aspect-ratio: 1 / 1;
 }
 
-
 .contact-form-control {
-    border : solid 1px #e1e1e1;
+    border: solid 1px #e1e1e1;
     background-color: transparent;
     border-radius: 0px !important;
 }
 
-.contact-us-form{
+.contact-us-form {
     background-color: #f1faf1;
     padding: 25px;
 }
 
-.contact-us-form-title{
+.contact-us-form-title {
     padding: 10px;
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
-.contact-form-group{
+.contact-form-group {
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
-.contact-btn-block{
+.contact-btn-block {
     width: 100% !important;
     border-radius: 0px !important;
     margin-top: 15px;
+}
+
+.page-nav-item:hover {
+    color: #6bb252 !important;
+}
+
+.page-nav-item:focus {
+    color: white !important;
+}
+
+.blog-aside-section {
+    background-color: #f1faf1;
+    padding: 30px 20px;
+    margin: 10px 0px;
+}
+
+.blog-search-post-form {
+    background-color: white;
+    padding: 25px;
+}
+
+.blog-search-post-form h5{
+    font-size: 18px;
+}
+
+.blog-news-letter-section {
+    background-color: white;
+    padding: 18px;
+}
+
+.blog-news-letter-section h5 {
+    font-size: 15px !important;
+    font-weight: 700;
+}
+
+.blog-categories-section {
+    margin-top: 40px;
+}
+
+.blog-aside-section-category-link{
+    text-decoration: none;
+}
+
+.blog-aside-section-category-link:hover{
+    color: #6BB252;
+}
+
+.custom-post-title:hover{
+    color: #6BB252 !important;
+}
+
+.post-img-container{
+    overflow-y: hidden !important;
+    padding: 25px;
+    // background-color: #f1faf1;
+
+}
+
+
+.post-img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 441px !important;
+    object-fit: fill;
+    object-position: center;
+
+}
+
+.article-title-link{
+    text-decoration: underline !important;
+
+}
+
+.article-title-link:hover{
+    color :#6BB252 !important;
+}
+
+.text-underline{
+    text-decoration: underline;
+}
+
+.text-muted {
+    color: #b3b5b3;
+}
+
+.article-featured-container{
+    position: absolute;
+    top: 35px;
+    left: 0px;
+    padding: 5px 10px;
+    background-color: #6cb252c1;
+    color: white;
+    text-align: center;
+    font-size: 13px;
+}
+
+.post-container {
+    min-height: 100% !important;
 }

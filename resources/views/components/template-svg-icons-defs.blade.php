@@ -311,6 +311,11 @@
             <circle cx="16" cy="18" r="2" />
         </symbol>
 
+        <symbol xmlns="http://www.w3.org/2000/svg" id="tags" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M19 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Zm0 16H7V5h12v14ZM9 7h6v2H9V7Zm0 4h6v2H9v-2Z"/>
+        </symbol>
+
+
         <!-- Icone Télévision -->
         <symbol id="tv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">

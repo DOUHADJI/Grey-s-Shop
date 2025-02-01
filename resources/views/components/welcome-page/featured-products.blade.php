@@ -9,7 +9,7 @@
 
                     <!-- Button Voir tout -et bouton de défilement -->
                     <div class="d-flex align-items-center">
-                        <a href="#" class="btn btn-primary me-2">View All</a>
+                        <a href="{{ route("featured-articles")}} " class="btn btn-primary me-2">Voir tout</a>
                         <div class="swiper-buttons">
                             <button class="swiper-prev products-carousel-prev btn btn-primary">❮</button>
                             <button class="swiper-next products-carousel-next btn btn-primary">❯</button>
@@ -24,10 +24,10 @@
                 <!-- Products -->
                 <div class="swiper">
                     <div class="swiper-wrapper">
-                        @for ($i=0; $i < 10; $i++)
+                        @foreach($featuredProducts as $article)
                             <!-- Featured product item -->
-                            <x-welcome-page.featured-product-item />
-                        @endfor
+                            <x-product-item-card :article="$article" />
+                        @endforeach
                     </div>
                 </div>
             </div>

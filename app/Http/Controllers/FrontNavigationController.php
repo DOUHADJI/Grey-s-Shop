@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class FrontNavigationController extends Controller
@@ -28,6 +29,34 @@ class FrontNavigationController extends Controller
         return view("pages.article.index");
     }
 
+    public function search(Request $request)
+    {
+        $term = $request->input("term");
+        $category = $request->input("category");
+
+        $searchTerm = "%" . $term . "%";
+        $articles = Article::query();
+        $posts = Post::query();
+
+        if ($searchTerm) {
+            $articles->where("title", "like", $searchTerm);
+            $posts->where("title", "like", $searchTerm);
+        }
+
+        if ($category && $category !== "all") {
+            $categoryModel = Category::where("slug", $category)->first();
+            $articles->where("category_id", $categoryModel->id);
+            $posts->where("category_id", $categoryModel->id);
+        }
+
+        return view("pages.search", [
+            "request" => $request,
+            "term" => $term,
+            "articles" => $articles->paginate(4),
+            "posts" => $posts->paginate(4)
+        ]);
+    }
+
     public function showCategories()
     {
         $categories = Category::with("articles")->get();
@@ -47,6 +76,26 @@ class FrontNavigationController extends Controller
             "articles" => $articles
         ]);
     }
+
+
+    public function showBestSelling()
+    {
+        $articles = Article::take(15)->paginate(10);
+
+        return view("pages.best-selling", [
+            "articles" => $articles
+        ]);
+    }
+
+    public function showFeaturedArticles()
+    {
+        $articles = Article::where("is_featured", true)->orderBy("created_at", "ASC")->paginate(10);
+
+        return view("pages.featured-articles", [
+            "articles" => $articles
+        ]);
+    }
+
 
     public function showArticle(string $categorySlug, string $slug)
     {

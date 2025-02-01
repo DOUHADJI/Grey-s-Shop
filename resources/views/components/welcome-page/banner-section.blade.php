@@ -7,11 +7,11 @@
                 </h2>
                 <p class="fs-4">{{ $subheading }}</p>
                 <div class="d-flex gap-3">
-                    <a href="{{ $shoppingLink }}" class="btn btn-primary text-uppercase fs-6 rounded-pill px-4 py-3 mt-3">Commander maintenant</a>
-                    <a href="{{ $joinLink }}" class="btn btn-dark text-uppercase fs-6 rounded-pill px-4 py-3 mt-3">Devenir partenaire</a>
+                    <a href="{{ route("shop") }}" class="btn btn-primary text-uppercase fs-6 rounded-pill px-4 py-3 mt-3">Commander maintenant</a>
+                    {{-- <a href="{{ $joinLink }}" class="btn btn-dark text-uppercase fs-6 rounded-pill px-4 py-3 mt-3">Devenir partenaire</a> --}}
                 </div>
                 <div class="row my-5">
-                    <x-welcome-page.info-card value="2k+" label="Accessoires Tech" />
+                    <x-welcome-page.info-card value="{{$articlesCount}}+" label="Accessoires Tech" />
                     <x-welcome-page.info-card value="20k+" label="Clients satisfaits" />
                     <x-welcome-page.info-card value="15+" label="Points de vente" />
                 </div>

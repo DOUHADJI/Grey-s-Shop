@@ -4,7 +4,7 @@
         <div class="content-wrapper text-light">
             <h3 class="banner-title text-light">{{ $title }}</h3>
             <p>{{ $description }}</p>
-            <a href="#" class="btn-link text-white">{{ $buttonText }}</a>
+            <a href="{{ route("shop") }}" class="btn-link text-white">{{ $buttonText }}</a>
         </div>
     </div>
 </div>

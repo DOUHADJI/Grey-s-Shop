@@ -22,6 +22,10 @@
     ];
 @endphp
 
+@php
+  //  dd(request()->input('category'));
+@endphp
+
 <header>
     <div class="container-fluid">
         <div class="row py-3 border-bottom">
@@ -53,10 +57,14 @@
                 <div class="search-bar row bg-light p-2 rounded-4">
                     <!-- Search Categories Select -->
                     <div class="col-md-4 d-none d-md-block">
-                        <select class="form-select border-0 bg-transparent">
-                            <option value="all">Toutes les catégories</option>
+                        <select class="form-select border-0 bg-transparent" form="search-form" name="category"
+                            {{-- value="@if (request()->input('category')) {{ request()->input('category') }} @endif " --}}>
+                            <option value="all" @if (request()->input('category') === 'all') selected @endif>Toutes les
+                                catégories</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->slug }}"> {{ $category->name }} </option>
+                                <option value="{{ $category->slug }}" @if (request()->input('category') === $category->slug) selected @endif>
+                                    {{ $category->name }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -64,16 +72,17 @@
 
                     <!-- Search Input -->
                     <div class="col-11 col-md-7">
-                        <form id="search-form" class="text-center" action="{{ route('home') }}" method="post">
+                        <form id="search-form" class="text-center" action="{{ route('search') }}" method="GET">
                             <input type="text" class="form-control border-0 bg-transparent"
-                                placeholder="Retrouver des produits">
+                                placeholder="Retrouver des produits" name="term"
+                                value="@if (request()->input('term')) {{ request()->input('term') }} @endif">
                         </form>
                     </div>
                     <!-- End Search Input -->
 
                     <!-- Search Button -->
                     <div class="col-1">
-                        <button style="border:none;background-color:transparent">
+                        <button style="border:none;background-color:transparent" type="submit" form="search-form">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <path fill="currentColor"
                                     d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z" />
@@ -91,7 +100,7 @@
                     class="navbar-nav list-unstyled d-flex flex-row gap-3 gap-lg-5 justify-content-center flex-wrap align-items-center mb-0 fw-bold text-uppercase text-dark">
                     <!-- Home Link -->
                     <li class="nav-item active">
-                        <a href="{{ route('home') }}" class="nav-link">Accueil</a>
+                        <a href="{{ route('home') }}" class="nav-link page-nav-item">Accueil</a>
                     </li>
                     <!-- End Home Link -->
 
@@ -101,7 +110,8 @@
                             aria-expanded="false">Pages</a>
                         <ul class="dropdown-menu border-0 p-3 rounded-0 shadow" aria-labelledby="pages">
                             @foreach ($pages as $page)
-                                <li><a href="{{ $page['route'] }}" class="dropdown-item">{{ $page['label'] }} </a></li>
+                                <li><a href="{{ $page['route'] }}"
+                                        class="dropdown-item page-nav-item">{{ $page['label'] }} </a></li>
                             @endforeach
                         </ul>
                     </li>

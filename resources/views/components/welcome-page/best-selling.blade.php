@@ -11,7 +11,7 @@
 
                             <!-- Bouton pour voir tous les produits -->
                             <div class="d-flex align-items-center">
-                                <a href="#" class="btn btn-primary rounded-1">View All</a>
+                                <a href="{{ route('best-selling') }}" class="btn btn-primary rounded-1">Voir tout</a>
                             </div>
                         </div>
                     </div>
@@ -21,10 +21,11 @@
                 <div class="row">
                     <div class="col-md-12">
 
-                        <div class="product-grid row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5">
-                            @for ($i = 0; $i < 10; $i++)
-                                <x-welcome-page.best-sell-product-item />
-                            @endfor
+                        <div
+                            class="product-grid row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5">
+                            @foreach ($bestSellings as $article)
+                                <x-product-item-card :article="$article" />
+                            @endforeach
                         </div>
 
 

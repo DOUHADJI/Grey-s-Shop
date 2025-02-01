@@ -1,4 +1,3 @@
-
 <!-- Section des catégories -->
 <section class="py-5 overflow-hidden">
     <div class="container-lg">
@@ -10,7 +9,7 @@
 
                     <!-- Boutons d'action : Voir tout et Navigation Swiper -->
                     <div class="d-flex align-items-center">
-                        <a href="#" class="btn btn-primary me-2">Tout voir</a>
+                        <a href="{{ route("category.index") }}" class="btn btn-primary me-2">Tout voir</a>
                         <div class="swiper-buttons">
                             <!-- Boutons pour naviguer dans le carousel -->
                             <button class="swiper-prev category-carousel-prev btn btn-yellow">❮</button>
@@ -27,8 +26,9 @@
                 <div class="category-carousel swiper">
                     <div class="swiper-wrapper">
                         <!-- Chaque catégorie est un lien avec une image et un titre -->
-                        @foreach ($categories as $category) <!-- Boucle à travers les catégories -->
-                        <x-welcome-page.category-item :image="$category['image']" :title="$category['name']" :slug="$category['slug']" />
+                        @foreach ($categories as $category)
+                            <!-- Boucle à travers les catégories -->
+                            <x-welcome-page.category-item :category="$category" />
                         @endforeach
                     </div>
                 </div>

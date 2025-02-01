@@ -9,6 +9,7 @@ use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
@@ -17,6 +18,7 @@ use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Actions\DeleteBulkAction;
 use App\Filament\Resources\ArticleResource\Pages;
 
@@ -30,57 +32,66 @@ class ArticleResource extends Resource
     protected static ?string $label = 'Article';
 
     public static function form(Form $form): Form
-{
-    return $form
-        ->schema([
+    {
+        return $form
+            ->schema([
 
-            Section::make('Informations principales')
-                ->schema([
+                Section::make('Informations principales')
+                    ->schema([
 
-                    TextInput::make('title')
-                        ->label('Titre')
-                        ->required()
-                        ->maxLength(255)
-                        ->columnSpan(4),
+                        TextInput::make('title')
+                            ->label('Titre')
+                            ->required()
+                            ->maxLength(255)
+                            ->columnSpan(4),
 
-                    Select::make('category_id')
-                        ->label('Catégorie')
-                        ->required()
-                        ->relationship('category', 'name')
-                        ->columnSpan(4),
-                ])
-                ->columns(4),
+                        Select::make('category_id')
+                            ->label('Catégorie')
+                            ->required()
+                            ->relationship('category', 'name')
+                            ->columnSpan(4),
+                    ])
+                    ->columns(4),
 
-            Section::make('Description')
-                ->schema([
+                Section::make('Description')
+                    ->schema([
 
-                    Textarea::make('description')
-                        ->label('Description')
-                        ->required()
-                        ->rows(5)
-                        ->columnSpan(4),
+                        Textarea::make('description')
+                            ->label('Description')
+                            ->required()
+                            ->rows(5)
+                            ->columnSpan(4),
 
-                    FileUpload::make('image')
-                        ->label('Image')
-                        ->directory('articles')
-                        ->required()
-                        ->columnSpan(4),
-                ])
-                ->columns(4),
+                        FileUpload::make('image')
+                            ->label('Image')
+                            ->directory('articles')
+                            ->required()
+                            ->columnSpan(4),
+                    ])
+                    ->columns(4),
 
-            Section::make('Prix')
-                ->schema([
+                Section::make('Prix')
+                    ->schema([
 
-                    TextInput::make('price')
-                        ->label('Prix')
-                        ->numeric()
-                        ->step(0.01)
-                        ->required()
-                        ->columnSpan(4),
-                ])
-                ->columns(4),
-        ]);
-}
+                        TextInput::make('price')
+                            ->label('Prix')
+                            ->numeric()
+                            ->step(0.01)
+                            ->required()
+                            ->columnSpan(4),
+                    ])
+                    ->columns(4),
+
+                Section::make('Options')
+                    ->schema([
+                        Checkbox::make('is_featured')
+                            ->label('Article en vedette')
+                            ->default(false)
+                            ->columnSpan(4),
+                    ])
+                    ->columns(4),
+            ]);
+    }
 
 
     public static function table(Table $table): Table
@@ -114,6 +125,14 @@ class ArticleResource extends Resource
                     ->label('Créé le')
                     ->dateTime()
                     ->sortable(),
+
+                ToggleColumn::make('is_featured')
+                    ->label('Article en vedette')
+                    ->sortable()
+                    ->default(false)
+                    ->toggleable()
+                    ->color('primary')
+                    ->after('price'),
             ])
             ->actions([
                 EditAction::make()
@@ -127,6 +146,7 @@ class ArticleResource extends Resource
                 DeleteBulkAction::make(),
             ]);
     }
+
 
     public static function getRelations(): array
     {

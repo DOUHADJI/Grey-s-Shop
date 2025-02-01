@@ -9,13 +9,19 @@ Route::get("/", [FrontNavigationController::class, "home"])->name("home");
 Route::get("/a-propos-de-nous", [FrontNavigationController::class, "about"])->name("about");
 Route::get("/nous-contacter", [FrontNavigationController::class, "contact"])->name("contact");
 Route::get("/notre-boutique", [FrontNavigationController::class, "shop"])->name("shop");
+Route::get("meilleurs-articles-vendus", [FrontNavigationController::class, "showBestSelling"])->name("best-selling");
+Route::get("articles-en-vedette", [FrontNavigationController::class, "showFeaturedArticles"])->name("featured-articles");
 
 Route::get("/blog", [PostController::class, "index"])->name("blog.index");
+Route::get("/blog/posts/{slug}", [PostController::class, "show"])->name("post.show");
 
+Route::get("/rechercher-un-element", [FrontNavigationController::class, "search"])->name("search");
 
-Route::get("/categories-de-produits", [FrontNavigationController::class, "showCategory"])->name("category.index");
+Route::get("/categories-de-produits", [FrontNavigationController::class, "showCategories"])->name("category.index");
 Route::get("/categories-de-produits/{slug}", [FrontNavigationController::class, "showCategory"])->name("category.show");
 Route::get("/categories-de-produits/{categorySlug}/{slug}", [FrontNavigationController::class, "showArticle"])->name("article.show");
+
+
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
