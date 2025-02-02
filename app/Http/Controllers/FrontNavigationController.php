@@ -5,11 +5,23 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Post;
+use App\UseCases\ArticleUseCase;
+use App\UseCases\ViewUseCase;
 use Illuminate\Http\Request;
 
 class FrontNavigationController extends Controller
 {
-    
+    public $articleUseCase;
+    public $viewUseCase;
+
+    public function __construct(
+        ArticleUseCase $articleUseCase,
+        ViewUseCase $viewUseCase
+    ) {
+        $this->articleUseCase = $articleUseCase;
+        $this->viewUseCase = $viewUseCase;
+    }
+
     public function home()
     {
         return view("pages.welcome");
@@ -105,6 +117,15 @@ class FrontNavigationController extends Controller
 
         $article = Article::where("slug", $slug)->with(["category", "comments"])->first();
         $relatedArticles = Article::where("id", "!=", $article->id)->with(["category", "comments"])->orderBy("updated_at", "DESC")->take(8)->get();
+
+        $this->articleUseCase->incrementViewCount($article->id);
+
+        $viewData = [
+            "article_id" => $article->id,
+            "ip_address" => request()->ip()
+        ];
+
+        $this->viewUseCase->createView($viewData);
 
         return view("pages.article.show", [
             "article" => $article,
