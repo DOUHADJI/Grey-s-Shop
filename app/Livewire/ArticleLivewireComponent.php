@@ -45,6 +45,14 @@ class ArticleLivewireComponent extends Component
 
             unset($this->haveLike);
             $this->haveLike = true;
+
+            /* $this->dispatch('articleLiked', [
+                'title' => $this->article->title,
+                'articleId' => $this->article->id
+            ]); */
+
+            flash()->success("Article " . $this->article->title . " liké");
+
         } else {
             $like = ProductLike::whereNotNull("ip_address")->where("ip_address", request()->ip())->orWhereNotNull("user_id")->where("user_id", Auth::id())->where("product_id", $this->article->id)->first();
             $like->delete();

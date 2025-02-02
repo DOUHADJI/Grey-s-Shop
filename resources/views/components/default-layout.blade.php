@@ -21,14 +21,14 @@
             </div>
         </header>
     @endif
-
     <!-- Page Content -->
     <main>
         {{ $slot }}
     </main>
     <x-footer />
-    <x-template-scripts />
     @livewireScripts()
+    <x-template-scripts />
+
 </body>
 
 </html>

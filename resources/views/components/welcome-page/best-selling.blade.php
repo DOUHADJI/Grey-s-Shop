@@ -24,7 +24,7 @@
                         <div
                             class="product-grid row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5">
                             @foreach ($bestSellings as $article)
-                                <x-product-item-card :article="$article" />
+                                <x-product-item-card :article="$article"  wire:key="article-{{ $article->id }}" />
                             @endforeach
                         </div>
 

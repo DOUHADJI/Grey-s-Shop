@@ -75,7 +75,8 @@
                         <div class="col-10">
                             <div class="">
                                 <h5 class="product-details-service-title text-primary">Qualité Premium</h5>
-                                <p class="product-details-service-description">Des accessoires de haute qualité pour vos appareils, garantis.</p>
+                                <p class="product-details-service-description">Des accessoires de haute qualité pour vos
+                                    appareils, garantis.</p>
                             </div>
                         </div>
                     </div>
@@ -89,7 +90,8 @@
                         <div class="col-10">
                             <div class="">
                                 <h5 class="product-details-service-title text-primary">Offres Exclusives</h5>
-                                <p class="product-details-service-description">Profitez des meilleures offres sur nos articles</p>
+                                <p class="product-details-service-description">Profitez des meilleures offres sur nos
+                                    articles</p>
                             </div>
                         </div>
                     </div>
@@ -103,7 +105,8 @@
                         <div class="col-10">
                             <div class="">
                                 <h5 class="product-details-service-title text-primary">Livraison Rapide</h5>
-                                <p class="product-details-service-description">Recevez vos commandes rapidement et en toute sécurité.</p>
+                                <p class="product-details-service-description">Recevez vos commandes rapidement et en
+                                    toute sécurité.</p>
                             </div>
                         </div>
                     </div>
@@ -114,16 +117,23 @@
 
         </div>
 
-        
+
         {{-- <x-article-search-form placeholder="Rechercher un article" label="Retrouver un article" /> --}}
         <div class="row mt-5 mb-5">
-            <h4 class="mb-4 related-articles-title px-4 py-3"> Découvrez d'autres articles similaires</h4>
-            <div class="mt-3 row">
-                @foreach ($relatedArticles as $relatedArticle)
-                    <x-product-item-card :article="$relatedArticle" />
-                @endforeach
+            <div class="col-12">
+
+                <h4 class="mb-4 related-articles-title px-4 py-3"> Découvrez d'autres articles similaires</h4>
+                <div class="product-grid row">
+
+                    @foreach ($relatedArticles as $relatedArticle)
+                        <x-product-item-card :article="$relatedArticle" wire:key="article-{{ $relatedArticle->id }}" />
+                    @endforeach
+                </div>
             </div>
+
         </div>
+
+
 
     </x-page-content-container>
 </x-default-layout>

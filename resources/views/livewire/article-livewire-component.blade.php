@@ -1,6 +1,6 @@
 <!-- Colonne pour afficher un produit -->
-<div class="col-md-3 p-3 @if (Route::currentRouteName() !== 'article.show') swiper-slide @endif ">
-    <div class="product-item relative">
+<div class="col-md-3 p-3 swiper-slide @if (Route::currentRouteName() !== 'article.show') swiper-slide @endif " id="article-{{ $article->id }}">
+    <div class="product-item position-relative">
         @if ($article->is_featured)
             <div class="article-featured-container">
                 En vedette
@@ -101,10 +101,4 @@
     </div>
 </div>
 
-{{-- @if ($haveLike)
-    <script>
-        var article = {{ Js::from($article) }};
-        console.log("yryyr")
-        showToast("Artcile " + article.title + ' liké')
-    </script>
-@endif --}}
+
