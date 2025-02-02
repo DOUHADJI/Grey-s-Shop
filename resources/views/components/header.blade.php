@@ -33,7 +33,8 @@
     <link href="{{ asset('fonts/fontawesome/css/duotone-thin.css') }}" rel="stylesheet" />
     <link href="{{ asset('fonts/fontawesome/css/sharp-duotone-thin.css') }}" rel="stylesheet" />
 
-
-    @livewireScripts()
     <script src="{{ asset('js/toaster.js') }}"></script>
+
+
+    @livewireStyles()
 </head>

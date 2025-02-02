@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class FrontNavigationController extends Controller
 {
+    
     public function home()
     {
         return view("pages.welcome");

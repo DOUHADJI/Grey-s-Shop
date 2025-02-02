@@ -113,6 +113,8 @@
             </div>
 
         </div>
+
+        
         {{-- <x-article-search-form placeholder="Rechercher un article" label="Retrouver un article" /> --}}
         <div class="row mt-5 mb-5">
             <h4 class="mb-4 related-articles-title px-4 py-3"> Découvrez d'autres articles similaires</h4>

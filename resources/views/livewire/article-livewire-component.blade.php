@@ -7,9 +7,6 @@
             </div>
         @endif
 
-
-
-
         <!-- Lien vers la page produit -->
         <a href="{{ route('article.show', ['categorySlug' => $article->category->slug, 'slug' => $article->slug]) }}"
             title="Product Title" class=" ">
@@ -104,10 +101,10 @@
     </div>
 </div>
 
-@if ($haveLike)
+{{-- @if ($haveLike)
     <script>
         var article = {{ Js::from($article) }};
         console.log("yryyr")
         showToast("Artcile " + article.title + ' liké')
     </script>
-@endif
+@endif --}}

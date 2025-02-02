@@ -28,6 +28,7 @@
     </main>
     <x-footer />
     <x-template-scripts />
+    @livewireScripts()
 </body>
 
 </html>
