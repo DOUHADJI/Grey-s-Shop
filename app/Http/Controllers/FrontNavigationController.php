@@ -37,14 +37,19 @@ class FrontNavigationController extends Controller
         return view("pages.contact");
     }
 
-    public function shop()
+    public function shop(Request $request)
     {
-        return view("pages.article.index");
+       // dd($request);
+      //  $articles = Article::paginate(12)->appends($request->query());
+
+        return view("pages.article.index", [
+       //     "articles" => $articles
+        ]);
     }
 
     public function search(Request $request)
     {
-        $term = $request->input("term");
+        $term = $request->input("title");
         $category = $request->input("category");
 
         $searchTerm = "%" . $term . "%";

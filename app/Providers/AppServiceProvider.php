@@ -24,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
         view()->share('categories', Category::all());
         view()->share("configs", Config::first());
         view()->share("recentPosts", Post::orderBy("created_at", "DESC")->take(3)->get() );

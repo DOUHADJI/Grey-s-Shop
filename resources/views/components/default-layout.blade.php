@@ -1,3 +1,27 @@
+@php
+    $pages = [
+        [
+            'label' => 'A propos',
+            'route' => route('about'),
+        ],
+
+        [
+            'label' => 'Notre Boutique',
+            'route' => route('shop'),
+        ],
+
+        [
+            'label' => 'Blog',
+            'route' => route('blog.index'),
+        ],
+
+        [
+            'label' => 'Nous contacter',
+            'route' => route('contact'),
+        ],
+    ];
+@endphp
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <x-header :title="$title" />
@@ -12,7 +36,7 @@
     </div>
 
     <x-offcanvas-navbar />
-    <x-navigation />
+    <x-navigation :pages="$pages" />
     <!-- Page Heading -->
     @if (isset($header))
         <header class="bg-white shadow">

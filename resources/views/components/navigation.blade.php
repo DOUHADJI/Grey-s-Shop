@@ -1,26 +1,4 @@
-@php
-    $pages = [
-        [
-            'label' => 'A propos',
-            'route' => route('about'),
-        ],
-
-        [
-            'label' => 'Notre Boutique',
-            'route' => route('shop'),
-        ],
-
-        [
-            'label' => 'Blog',
-            'route' => route('blog.index'),
-        ],
-
-        [
-            'label' => 'Nous contacter',
-            'route' => route('contact'),
-        ],
-    ];
-@endphp
+@props(["pages"])
 
 
 <header>
@@ -71,8 +49,8 @@
                     <div class="col-11 col-md-7">
                         <form id="search-form" class="text-center" action="{{ route('search') }}" method="GET">
                             <input type="text" class="form-control border-0 bg-transparent"
-                                placeholder="Retrouver des produits" name="term"
-                                value="@if (request()->input('term')) {{ request()->input('term') }} @endif">
+                                placeholder="Retrouver des produits" name="title"
+                                value="@if (request()->input('title')) {{ request()->input('title') }} @endif">
                         </form>
                     </div>
                     <!-- End Search Input -->
