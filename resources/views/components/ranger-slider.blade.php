@@ -5,11 +5,15 @@
         <div class="price-input">
             <div class="price-field">
                 <span>Minimum</span>
-                <input type="number" class="min-input" name="min-price" value="2000" min="2000" max="300000" form="shop-search-form">
+                <input type="number" class="min-input" name="min-price"
+                    @if (request()->input('min-price')) value="{{ request()->input('min-price') }}" @else value="75000" @endif
+                    min="2000" max="300000" form="shop-search-form">
             </div>
             <div class="price-field">
                 <span>Maximum</span>
-                <input type="number" class="max-input" name="max-price" value="300000" min="2000" max="300000" form="shop-search-form">
+                <input type="number" class="max-input" name="max-price"
+                    @if (request()->input('min-price')) value="{{ request()->input('max-price') }}" @else value="255000" @endif
+                    min="2000" max="300000" form="shop-search-form">
             </div>
         </div>
         <div class="slider-container">
@@ -19,8 +23,8 @@
 
     <!-- Slider -->
     <div class="range-input">
-        <input type="range" class="min-range" min="2000" max="300000" value="2000" step="1">
-        <input type="range" class="max-range" min="2000" max="300000" value="100000" step="1">
+        <input type="range" class="min-range" min="2000" max="300000" value="75000" step="1">
+        <input type="range" class="max-range" min="2000" max="300000" value="255000" step="1">
     </div>
 </div>
 
