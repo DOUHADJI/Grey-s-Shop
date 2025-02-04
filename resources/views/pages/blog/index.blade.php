@@ -63,11 +63,7 @@
 
                 <div class="p-3 bg-white mt-5 blog-news-letter-section">
                     <h5 class=""> S'abonner à la newsletter</h5>
-                    <form class="d-flex mt-3 gap-0" action="{{ route('home') }}">
-                        <input class="form-control rounded-start rounded-0 bg-light contact-form-control" type="email"
-                            placeholder="Email Address" aria-label="Email Address">
-                        <button class="btn btn-dark rounded-end rounded-0" type="submit">Subscribe</button>
-                    </form>
+                    @livewire("subscribe-newsletter-component")
                 </div>
             </div>
 
