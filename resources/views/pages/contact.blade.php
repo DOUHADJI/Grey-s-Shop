@@ -43,54 +43,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-9">
-                    <form action="" class="contact-us-form">
-                        <h3 class="contact-us-form-title"> Formulaire de contact </h3>
-                        <div class="row">
-
-                            <div class="col-lg-4">
-                                <div class="form-group contact-form-group">
-                                    <label for="name">Votre nom <span class="text-danger fw-bold">*</span> </label>
-                                    <input type="text" required class="form-control contact-form-control"
-                                        placeholder="Votre nom">
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4">
-                                <div class="form-group contact-form-group">
-                                    <label for="email">Votre e-mail <span class="text-danger fw-bold">*</span>
-                                    </label>
-                                    <input type="email" required class="form-control contact-form-control"
-                                        placeholder="votre adresse e-mail">
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4">
-                                <div class="form-group contact-form-group">
-                                    <label for="contact">Votre contact</label>
-                                    <input type="text" class="form-control contact-form-control"
-                                        placeholder="votre numero de téléphone">
-                                </div>
-                            </div>
-
-                            <br>
-                            <br>
-                            <div class="col-md-12">
-                                <div class="form-group contact-form-group">
-                                    <label for="name">Votre message</label>
-                                    <textarea type="text" class="form-control contact-form-control" placeholder="Ecrivez ici"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-group contact-form-group">
-                                    <button class="btn btn-primary contact-btn-block"> Envoyer le message </button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </form>
-                </div>
+               @livewire("message-form")
             </div>
         </div>
 

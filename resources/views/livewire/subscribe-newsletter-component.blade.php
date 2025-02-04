@@ -11,6 +11,7 @@
             {{ $message }}
         </span>
     @enderror
+    
 </div>
 
 @script
