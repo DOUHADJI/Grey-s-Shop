@@ -7,10 +7,19 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::where("is_published", 1)->paginate(10);
-        return view("pages.blog.index", ["posts" => $posts]);
+        $posts = Post::query();
+        $posts->where("is_published", 1);
+
+        $searchTerm = $request->input("search-term");
+        if ($searchTerm) {
+            $posts->where("title", "like", "%" . $searchTerm . "%");
+        }
+
+        $results = $posts->paginate(10);
+
+        return view("pages.blog.index", ["posts" => $results]);
     }
 
     public function show(string $slug)

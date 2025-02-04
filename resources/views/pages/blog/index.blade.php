@@ -6,13 +6,18 @@
 
         <div class="row mt-5 py-5 mb-5">
             <div class="col-md-9 px-4">
+                @if (request()->input('search-term'))
+                    <x-search-result-header :total="$posts->total()" :form-action-route="route('blog.index')" />
+                @endif
                 <div class="container">
                     <div class="row">
-                        @foreach ($posts as $post)
+                        @forelse ($posts as $post)
                             <div class="col-lg-6 p-2">
                                 <x-post-item-card :post="$post" />
                             </div>
-                        @endforeach
+                        @empty
+                            <h3 class="text-center text-muted">Aucun résultat trouvé</h3>
+                        @endforelse
                     </div>
                     <x-pagination :items="$posts" />
                 </div>
@@ -21,11 +26,12 @@
 
             <div class="col-md-3 blog-aside-section">
                 <div class="">
-                    <form action="" class="blog-search-post-form">
+                    <form action="" method="GET" class="blog-search-post-form">
                         <h5 class="my-4 ">Rechercher un article</h5>
                         <div class="col-12">
                             <div class="form-group">
-                                <input type="text" placeholder="Retrouver un article"
+                                <input type="text" name="search-term" placeholder="Retrouver un article"
+                                    value="@if (request()->input('search-term')) {{ request()->input('search-term') }} @endif"
                                     class="form-control contact-form-control">
                             </div>
                         </div>
