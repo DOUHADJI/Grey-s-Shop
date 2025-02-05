@@ -13,6 +13,7 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Builder;
@@ -20,6 +21,7 @@ use Filament\Tables\Columns\CheckboxColumn;
 use App\Filament\Resources\MessageResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\MessageResource\RelationManagers;
+use App\UseCases\MessageUseCase;
 
 class MessageResource extends Resource
 {
@@ -28,6 +30,7 @@ class MessageResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-envelope';
     protected static ?string $navigationLabel = 'Messages';
     protected static ?string $label = 'Messages';
+
 
     public static function form(Form $form): Form
     {
@@ -45,7 +48,11 @@ class MessageResource extends Resource
                     ->disabled(),
 
                 TextInput::make("sender_email")
-                    ->label("Addresse email")
+                    ->label("Adresse email")
+                    ->disabled(),
+
+                TextInput::make("subject")
+                    ->label("En tête du message")
                     ->disabled(),
 
                 Textarea::make("content")
@@ -61,12 +68,11 @@ class MessageResource extends Resource
                             ->label("Réponse au message")
                             ->autosize()
                             ->columnSpan(2)
-                            ->disabled(fn (Get $get): bool => $get('response') !== null)
-                            ->hidden(fn (Get $get): bool => $get('sender_email') == null),
+                            // ->disabled(fn(Get $get): bool => $get('response') !== null)
+                            ->extraAttributes(fn(Get $get) => $get('response') !== null ? ['readonly' => true] : [])
+                            ->hidden(fn(Get $get): bool => $get('sender_email') == null),
 
                     ])
-
-
             ]);
     }
 
@@ -94,16 +100,26 @@ class MessageResource extends Resource
                 Tables\Actions\EditAction::make()->label("")->mutateRecordDataUsing(function (array $data): array {
 
                     $model = Message::whereId($data["id"])->first();
-                    $model['is_readed'] = true;
+                    $model->is_readed = true;
                     $model->save();
                     return $data;
                 })
+                    ->using(function (Model $record, array $data): Model {
+
+                        $record->update($data);
+
+                        if (isset($data["response"])) {
+                            MessageUseCase::sendMailResponse($record->sender_email, $record->response, $record->subject);
+                        }
+
+                        return $record;
+                    })
                     ->icon('heroicon-m-eye')
                     ->modalHeading('Voir/Répondre message')
                     ->successNotification(Notification::make()
                         ->success()
                         ->title("Envoie de la réponse")
-                        ->body("Un email de réponse sera envoyé sur l'addresse mail de l'expéditeur"))
+                        ->body("Un email de réponse sera envoyé sur l'adresse mail de l'expéditeur"))
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

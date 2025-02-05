@@ -11,9 +11,11 @@ class MessageForm extends Component
     public $email;
     public $contact;
     public $content;
+    public $subject;
 
     protected $rules = [
         "name" => ["required", "string"],
+        "subject" => ["required", "string"],
         "email" => ["required", "email"],
         "contact" => ["nullable"],
         "content" => ["required", "string"]
@@ -31,12 +33,13 @@ class MessageForm extends Component
         $messageModel = new Message();
         $messageModel->sender_email = $this->email;
         $messageModel->sender_name = $this->name;
+        $messageModel->subject = $this->subject;
         $messageModel->sender_contact = $this->contact;
         $messageModel->content = $this->content;
         $messageModel->is_readed = false;
         $messageModel->save();
 
-        $this->reset(["name", "email", "contact", "content"]);
+        $this->reset(["name", "email", "contact", "content", "subject"]);
         $this->dispatch("message-send");
     }
 

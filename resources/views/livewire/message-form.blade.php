@@ -42,6 +42,20 @@
                     @enderror
                 </div>
             </div>
+            <br>
+            <br>
+            <div class="col-lg-12">
+                <div class="form-group contact-form-group">
+                    <label for="contact">En tête de votre message</label>
+                    <input wire:model="subject" type="text" class="form-control contact-form-control"
+                        placeholder="En tête du message" name="subject" required>
+                    @error('subject')
+                        <span class="text-danger">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </div>
+            </div>
 
             <br>
             <br>

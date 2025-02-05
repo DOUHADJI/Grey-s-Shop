@@ -75,18 +75,18 @@
             <div class="button-area p-3 pt-0">
                 <div class="row g-1 mt-2">
                     <!-- Champ pour la quantité -->
-                    <div class="col-3">
-                        <input type="number" name="quantity"
+                    {{-- <div class="col-3">
+                        <input type="number" name="quantity" disabled
                             class="form-control border-dark-subtle input-number quantity" value="1">
-                    </div>
+                    </div> --}}
                     <!-- Bouton d'ajout au panier -->
-                    <div class="col-7">
-                        <a href="#" class="btn btn-primary rounded-1 p-2 fs-7 btn-cart">
+                    {{-- <div class="col-7">
+                        <a class="btn btn-primary btn-disabled rounded-1 p-2 fs-7 btn-cart">
                             <svg width="18" height="18">
                                 <use xlink:href="#cart"></use>
                             </svg> + au panier
                         </a>
-                    </div>
+                    </div> --}}
                     <!-- Bouton pour ajouter aux favoris -->
                     <div class="col-2">
                         <button wire:click="likeAnArticle" class="btn btn-outline-dark rounded-1 p-2 fs-6">
@@ -99,6 +99,14 @@
             </div>
         </div>
     </div>
+    @script
+    <script>
+        $wire.on("article-liked", (e) => {
+            console.log(e)
+            showToast("Article " + e[0].title + " liké")
+        });
+    </script>
+    @endscript
 </div>
 
 
