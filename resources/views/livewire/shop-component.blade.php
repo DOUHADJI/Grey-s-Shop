@@ -49,8 +49,11 @@
 
     <div class="col-md-12 p-4">
         <h3 class="text-primary my-2">Articles en vente (+{{ $articleCount }}) </h3>
-        @if (request('min-price') || request('max-price') || request('category') || request('search'))
-            <h4 class="text-black mt-3 mb-5">Articles retrouvés ({{ $articles->total() }})</h4>
+
+        @if (request('min-price') || request('max-price') || request('category') || request('title'))
+            <div class="my-3">
+                <x-search-result-header :total="$articles->count()" :form-action-route="route('shop')" />
+            </div>
         @endif
 
         <div class="row">
