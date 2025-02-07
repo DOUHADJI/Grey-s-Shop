@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 // FRont Pages routes
 Route::get("/", [FrontNavigationController::class, "home"])->name("home");
 Route::get("/a-propos-de-nous", [FrontNavigationController::class, "about"])->name("about");
+Route::get("/faq", [FrontNavigationController::class, "faq"])->name("faq");
 Route::get("/nous-contacter", [FrontNavigationController::class, "contact"])->name("contact");
 Route::get("/notre-boutique", [FrontNavigationController::class, "shop"])->name("shop");
 Route::get("meilleurs-articles-vendus", [FrontNavigationController::class, "showBestSelling"])->name("best-selling");

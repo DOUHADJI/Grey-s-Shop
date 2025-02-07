@@ -2,13 +2,11 @@
 
 namespace App\Livewire;
 
-use App\Models\Article;
 use Livewire\Component;
 use App\Models\ProductLike;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ArticleLivewireComponent extends Component
+class ProductDetailsComponent extends Component
 {
     public $article;
     public $likes;
@@ -25,6 +23,7 @@ class ArticleLivewireComponent extends Component
         $this->haveLike = false;
         $this->haveDisLike = false;
     }
+
 
     public function likeAnArticle()
     {
@@ -55,17 +54,15 @@ class ArticleLivewireComponent extends Component
 
         } else {
             $like = ProductLike::whereNotNull("ip_address")->where("ip_address", request()->ip())->orWhereNotNull("user_id")->where("user_id", Auth::id())->where("product_id", $this->article->id)->first();
-            $deleted = $like->delete();
+            $like->delete();
 
-            if ($deleted) {
-                $this->likes = $this->likes - 1;
+            $this->likes = $this->likes - 1;
 
-                unset($this->isLikedByUser);
-                $this->isLikedByUser = false;
+            unset($this->isLikedByUser);
+            $this->isLikedByUser = false;
 
-                unset($this->haveDisLike);
-                $this->haveDisLike = true;
-            }
+            unset($this->haveDisLike);
+            $this->haveDisLike = true;
         }
     }
 
@@ -90,6 +87,6 @@ class ArticleLivewireComponent extends Component
 
     public function render()
     {
-        return view('livewire.article-livewire-component');
+        return view('livewire.product-details-component');
     }
 }

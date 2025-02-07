@@ -1,131 +1,119 @@
+@props(['pages'])
+
 <footer class="py-5">
     <div class="container-lg">
         <div class="row">
 
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer-menu">
-                    <img src="{{ asset('images/logo.svg') }}" width="240" height="70" alt="logo">
+                    <img src="{{ $configs->logo ? Storage::url($configs->logo) : asset('images/logo.svg') }}"
+                        width="240" height="70" alt="logo">
                     <div class="social-links mt-3">
                         <ul class="d-flex list-unstyled gap-2">
-                            <li>
-                                <a href="#" class="btn btn-outline-light">
-                                    <svg width="16" height="16">
-                                        <use xlink:href="#facebook"></use>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn btn-outline-light">
-                                    <svg width="16" height="16">
-                                        <use xlink:href="#twitter"></use>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn btn-outline-light">
-                                    <svg width="16" height="16">
-                                        <use xlink:href="#youtube"></use>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn btn-outline-light">
-                                    <svg width="16" height="16">
-                                        <use xlink:href="#instagram"></use>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn btn-outline-light">
-                                    <svg width="16" height="16">
-                                        <use xlink:href="#amazon"></use>
-                                    </svg>
-                                </a>
-                            </li>
+                            @if (!empty($configs->facebook_page_link))
+                                <li>
+                                    <a href="{{ $configs->facebook_page_link }}" target="_blank" class="btn btn-outline-light">
+                                        <svg width="16" height="16">
+                                            <use xlink:href="#facebook"></use>
+                                        </svg>
+                                    </a>
+                                </li>
+                            @endif
+
+                            @if (!empty($configs->twitter_page_link))
+                                <li>
+                                    <a href="{{ $configs->twitter_page_link }}" target="_blank" class="btn btn-outline-light">
+                                        <svg width="16" height="16">
+                                            <use xlink:href="#twitter"></use>
+                                        </svg>
+                                    </a>
+                                </li>
+                            @endif
+
+                            @if (!empty($configs->youtube_page_link))
+                                <li>
+                                    <a href="{{ $configs->youtube_page_link }}" target="_blank" class="btn btn-outline-light">
+                                        <svg width="16" height="16">
+                                            <use xlink:href="#youtube"></use>
+                                        </svg>
+                                    </a>
+                                </li>
+                            @endif
+
+                            @if (!empty($configs->instagram_page_link))
+                                <li>
+                                    <a href="{{ $configs->instagram_page_link }}" target="_blank" class="btn btn-outline-light">
+                                        <svg width="16" height="16">
+                                            <use xlink:href="#instagram"></use>
+                                        </svg>
+                                    </a>
+                                </li>
+                            @endif
+
+                            @if (!empty($configs->amazon_page_link))
+                                <li>
+                                    <a href="{{ $configs->amazon_page_link }}" target="_blank" class="btn btn-outline-light">
+                                        <svg width="16" height="16">
+                                            <use xlink:href="#amazon"></use>
+                                        </svg>
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
+
                     </div>
                 </div>
             </div>
 
+            <!-- Catégories  -->
             <div class="col-md-2 col-sm-6">
                 <div class="footer-menu">
-                    <h5 class="widget-title">Organic</h5>
+                    <h5 class="widget-title">Catégories</h5>
+                    <ul class="menu-list list-unstyled">
+                        @foreach ($categories as $category)
+                            <li class="menu-item">
+                                <a href="{{ route('category.index', ['slug' => $category->slug ]) }}"
+                                    class="nav-link">{{ $category->name }} </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Liens rapides -->
+            <div class="col-md-2 col-sm-6">
+                <div class="footer-menu">
+                    <h5 class="widget-title">Lien rapides</h5>
+                    <ul class="menu-list list-unstyled">
+                        @foreach ($pages as $page)
+                            <li class="menu-item">
+                                <a href="{{ $page['route'] }}" class="nav-link">{{ $page['label'] }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Service Client -->
+            <div class="col-md-2 col-sm-6">
+                <div class="footer-menu">
+                    <h5 class="widget-title">Service Client</h5>
                     <ul class="menu-list list-unstyled">
                         <li class="menu-item">
-                            <a href="#" class="nav-link">About us</a>
+                            <a href="{{ route("faq") }}" class="nav-link">FAQ</a>
                         </li>
                         <li class="menu-item">
-                            <a href="#" class="nav-link">Conditions </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="nav-link">Our Journals</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="nav-link">Careers</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="nav-link">Affiliate Programme</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="nav-link">Ultras Press</a>
+                            <a href="{{ route("contact")}}" class="nav-link">Nous contacter</a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="col-md-2 col-sm-6">
-                <div class="footer-menu">
-                    <h5 class="widget-title">Quick Links</h5>
-                    <ul class="menu-list list-unstyled">
-                        <li class="menu-item">
-                            <a href="#" class="nav-link">Offers</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="nav-link">Discount Coupons</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="nav-link">Stores</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="nav-link">Track Order</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="nav-link">Shop</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="nav-link">Info</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-2 col-sm-6">
-                <div class="footer-menu">
-                    <h5 class="widget-title">Customer Service</h5>
-                    <ul class="menu-list list-unstyled">
-                        <li class="menu-item">
-                            <a href="#" class="nav-link">FAQ</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="nav-link">Contact</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="nav-link">Privacy Policy</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="nav-link">Returns & Refunds</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="nav-link">Cookie Guidelines</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="nav-link">Delivery Information</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+
+            <!-- Subscribe to newsletter -->
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer-menu">
-                    <h5 class="widget-title">Subscribe Us</h5>
-                    <p>Subscribe to our newsletter to get updates about our grand offers.</p>
+                    <h5 class="widget-title">Abonnez-vous</h5>
+                    <p>Restez informé(e) de nos offres et publications à travers notre newsletter.</p>
                     @livewire('subscribe-newsletter-component')
                 </div>
             </div>

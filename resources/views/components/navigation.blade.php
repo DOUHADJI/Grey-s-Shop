@@ -11,7 +11,7 @@
                 <!-- App Logo -->
                 <div class="d-flex align-items-center my-3 my-sm-0">
                     <a href="{{ route('home') }}">
-                        <img src="{{ asset('images/logo.svg') }}" alt="logo" class="img-fluid">
+                        <img src="{{ $configs->logo ? Storage::url($configs->logo) : asset('images/logo.svg') }}" alt="logo" class="img-fluid">
                     </a>
                 </div>
                 <!-- End App Logo -->

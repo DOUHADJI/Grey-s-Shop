@@ -37,6 +37,11 @@ class FrontNavigationController extends Controller
         return view("pages.contact");
     }
 
+    public function faq()
+    {
+        return view("pages.faq");
+    }
+
     public function shop(Request $request)
     {
        // dd($request);

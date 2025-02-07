@@ -49,7 +49,7 @@
     <main>
         {{ $slot }}
     </main>
-    <x-footer />
+    <x-footer :pages="$pages" />
     @livewireScripts()
     <x-template-scripts />
 

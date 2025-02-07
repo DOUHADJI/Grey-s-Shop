@@ -256,8 +256,8 @@ body {
 }
 
 .toast::before {
-   // content: "✔"; /* Icône de succès */
-   // font-size: 16px;
+    // content: "✔"; /* Icône de succès */
+    // font-size: 16px;
 }
 
 .error-toast {
@@ -481,4 +481,18 @@ input[type="range"]::-webkit-slider-thumb {
 .shop-search-container {
     padding: 30px !important;
     background-color: #f2faf2;
+}
+
+.nav-link:hover {
+    color: #4caf50;
+}
+
+.product-item {
+    width: fit-content !important;
+}
+
+.product-container-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
